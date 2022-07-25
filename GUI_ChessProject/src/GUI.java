@@ -14,7 +14,6 @@ public class GUI implements ActionListener {
     private final JPanel panelPartida = new JPanel();
     private final BufferedImage imagenInicio = ImageIO.read(new File("img/inicio.png"));
     private final BufferedImage tablero = ImageIO.read(new File("img/tablero.png"));
-    private final BufferedImage elementoDeFondo = ImageIO.read(new File("img/bgElement1.png"));
     //Imágenes de Piezas negras
     private final BufferedImage torreNegra = ImageIO.read(new File("img/torreNegra.png"));
     private final BufferedImage alfilNegro = ImageIO.read(new File("img/alfilNegro.png"));
@@ -46,28 +45,19 @@ public class GUI implements ActionListener {
         frameInicio.add(panelInicio, BorderLayout.CENTER);
         framePartida.add(panelPartida, BorderLayout.CENTER);
 
-        JLabel labelDeElementoDeFondo = new JLabel(new ImageIcon(elementoDeFondo));
-        panelPartida.add(labelDeElementoDeFondo);
-        labelDeElementoDeFondo.setBounds(500, 115, 390, 490);
-
-        Graphics gDeFondo = elementoDeFondo.getGraphics();
-        gDeFondo.setColor(Color.BLACK);
-        gDeFondo.setFont(gDeFondo.getFont().deriveFont(20f));
-        gDeFondo.drawString("Historial", 50, 40);
-        gDeFondo.dispose();
-
-        String[] objetoListaHistorial = {"1", "2"};
+        String[] objetoListaHistorial = {"a2a3", "a2a3","a2a3","a2a3","a2a3", "a2a3","a2a3","a2a3","a2a3","a2a3", "a2a3","a2a3","a2a3","a2a3", "a2a3","a2a3","a2a3","a2a3","a2a3", "a2a3","a2a3","a2a3","a2a3", "a2a3","a2a3","a2a3","a2a3"};
         JList listaHistorial = new JList(objetoListaHistorial);
-        JPanel panelHistorial = new JPanel();
 
-        /*JSplitPane splitPaneTablero = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,listaHistorial,listaHistorial);
-        splitPaneTablero.setDividerLocation(500);
-        framePartida.add(splitPaneTablero);
+        JScrollPane scrollHistorial = new JScrollPane();
+        scrollHistorial.setViewportView(listaHistorial);
+        listaHistorial.setLayoutOrientation(JList.VERTICAL);
+        panelPartida.add(scrollHistorial);
+        scrollHistorial.setBounds(550,135,390,390);
 
-        JSplitPane splitPaneHistorial = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,listaHistorial,listaHistorial);
-        splitPaneHistorial.add(listaHistorial);
-        splitPaneTablero.setDividerLocation(700);
-        framePartida.add(splitPaneHistorial);*/
+        JLabel textoHistorial = new JLabel("Historial de Jugadas");
+        textoHistorial.setFont(new Font("Arial",Font.PLAIN,28));
+        textoHistorial.setBounds(550,90,350,40);
+        panelPartida.add(textoHistorial);
 
         JButton iniciarPartida = new JButton("Iniciar partida");
         iniciarPartida.addActionListener(this);
